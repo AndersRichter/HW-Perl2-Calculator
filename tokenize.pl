@@ -28,7 +28,7 @@ sub tokenize {
 	next if $expr =~ /^\s*$/;
 	$expr=~s/[ ]+//g;
 	$expr=~ s/[a-d]|[f-z]//g;
-	$expr=~ s/\.0//g;
+	#$expr=~ s/\.0//g;
 	if (($expr =~ /ee+/)|($expr=~ /\.\d+\./)|($expr !~ /[0-9]/))
 	{
 		die "Error\n";
