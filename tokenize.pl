@@ -26,10 +26,14 @@ sub tokenize {
 	my @res;
 
 	next if $expr =~ /^\s*$/;
+	if ($expr =~ /\d+\s+\d+/g)
+	{
+		die "Error\n";
+	}
 	$expr=~s/[ ]+//g;
 	$expr=~ s/[a-d]|[f-z]//g;
 	$expr=~ s/(\d+)\.0(\D)/$1$2/g;
-	if (($expr =~ /ee+/)|($expr=~ /\.\d+\./)|($expr !~ /[0-9]/))
+	if (($expr =~ /ee+/)|($expr=~ /\.\d+\./)|($expr !~ /[0-9]/)|($expr=~ /[\*\/][\*\/]/)|($expr=~ /[\+\-\*\/\^\.\,\(e]$/)|($expr=~ /^[\*\/\^\)]/))
 	{
 		die "Error\n";
 	}
