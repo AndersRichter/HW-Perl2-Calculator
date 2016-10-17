@@ -26,6 +26,14 @@ sub tokenize {
 	my @res;
 
 	next if $expr =~ /^\s*$/;
+	if((my $otkr = $expr=~ s/\(/\(/g) != (my $zakr = $expr=~ s/\)/\)/g))
+	{
+		die "Error\n";
+	}
+	if ((my $count = $expr=~ s/(\d+)/$1/g == 1)&&($expr=~ /\d+[\+-\/\*\^]+/))
+	{
+		die "Error\n";
+	}
 	if ($expr =~ /\d+\s+\d+/g)
 	{
 		die "Error\n";
